@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baby Name Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+            background-color: #f4f4f4;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        button:hover {
+            transform: scale(1.1);
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 60px;
+            font-weight: bold;
+            font-family: 'Verdana', cursive;
+            color: #2c3e50;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .shake {
+            animation: shake 0.5s;
+        }
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-10px); }
+            50% { transform: translateX(10px); }
+            75% { transform: translateX(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <h1>Baby Name Generator</h1>
+    <button onclick="generateName()">Generate Name</button>
+    <div class="result" id="result"></div>
+
+    <script>
+        const names = [
+            ["1", "Jan"], ["2", "Stanisław"], ["3", "Andrzej"], ["4", "Józef"], ["5", "Tadeusz"],
+            ["6", "Jerzy"], ["7", "Zbigniew"], ["8", "Krzysztof"], ["9", "Henryk"], ["10", "Ryszard"],
+            ["11", "Kazimierz"], ["12", "Marek"], ["13", "Marian"], ["14", "Piotr"], ["15", "Janusz"],
+            ["16", "Władysław"], ["17", "Adam"], ["18", "Wiesław"], ["19", "Zdzisław"], ["20", "Edward"],
+            ["21", "Mieczysław"], ["22", "Roman"], ["23", "Mirosław"], ["24", "Grzegorz"], ["25", "Czesław"],
+            ["26", "Bogdan"], ["27", "Dariusz"], ["28", "Leszek"], ["29", "Jacek"], ["30", "Wojciech"],
+            ["31", "Bogusław"], ["32", "Sylwester"], ["33", "Aleksander"], ["34", "Stefan"], ["35", "Bartosz"],
+            ["36", "Sebastian"], ["37", "Patryk"], ["38", "Damian"], ["39", "Daniel"], ["40", "Paweł"],
+            ["41", "Łukasz"], ["42", "Tomasz"], ["43", "Konrad"], ["44", "Dominik"], ["45", "Maciej"],
+            ["46", "Jakub"], ["47", "Szymon"], ["48", "Kamil"], ["49", "Mateusz"], ["50", "Filip"]
+        ];
+        
+        let availableNames = [...names];
+        
+        function generateName() {
+            if (availableNames.length === 0) {
+                availableNames = [...names];
+            }
+            let randomIndex = Math.floor(Math.random() * availableNames.length);
+            let [randomLP, randomName] = availableNames.splice(randomIndex, 1)[0];
+            let fullName = "(" + randomLP + ") " + randomName + " Tarkowski";
+            let resultElement = document.getElementById("result");
+            resultElement.innerText = fullName;
+            resultElement.classList.add("shake");
+            setTimeout(() => resultElement.classList.remove("shake"), 500);
+        }
+    </script>
+</body>
+</html>
